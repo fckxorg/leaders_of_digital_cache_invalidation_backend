@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 import json
+from email.message import EmailMessage
+import smtplib
+from string import Template
 
 def index(request):
     return render(request, 'index.html')
@@ -48,3 +51,37 @@ def bloger_search(request):
         }
     )
 
+@csrf_exempt
+def send_email(request):
+    data = json.loads(request.body.decode('utf-8'))
+
+    sender_password = None
+    sender_email = None
+    
+    with open('creds', 'r') as creds:
+        sender_email = creds.readline()
+        sender_password = creds.readline()
+    print(sender_email)
+
+    letter = data['template']
+
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.ehlo()
+    server.login(sender_email, sender_password)
+
+    for bloger in data['blogers']:
+        print(bloger['name'])
+        email = bloger['email']
+        message = EmailMessage()
+        message.set_content(Template(letter).substitute(name=bloger['name'], trip=bloger['trip'], date_start=bloger['date_start'], date_end=bloger['date_end']))
+
+        message['Subject'] = 'Поездка в Самару'
+        message['From'] = sender_email
+        message['To'] = email
+        
+        print('Sending message to ' + email + '...\t', end='')
+        server.send_message(message)
+        print('sent')
+
+    server.close()
+    return HttpResponse(200)
