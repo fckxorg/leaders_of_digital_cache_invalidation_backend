@@ -1380,3 +1380,9 @@ video {
 .bloger-card {
   margin-bottom: 15px;
 }
+
+.accept-form {
+  margin-left: 37%;
+  margin-top: 15%;
+  width: 30rem; 
+}

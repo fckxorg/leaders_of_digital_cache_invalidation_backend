@@ -16,7 +16,7 @@ def index(request):
 
 def accept_invite(request):
     # TODO form for accept
-    return render(request, 'index.html')
+    return render(request, 'accept.html')
 
 @csrf_exempt
 def bloger_search(request):

@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Lead of digital</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+  <link href="//db.onlinewebfonts.com/c/88f10bf18a36407ef36bf30bc25a3618?family=Suisse+Intl" rel="stylesheet" type="text/css"/>
+
+  <script src="https://kit.fontawesome.com/771831ed14.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-gray-100">
+<div class="space-y-4 mt-3">
+  <div class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow accept-form">
+    <div class="filter_item">
+      <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+        Ваш никнейм
+      </div>
+      <div class="flex items-center w-full">
+        <input type="text" class="min-sub-input pl-8 h-9 bg-transparent border border-gray-300 dark:border-gray-700 dark:text-white w-full rounded-md text-sm"/>
+      </div>
+    </div>
+    <div class="filter_item">
+      <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+        Название поездки
+      </div>
+      <div class="flex items-center w-full">
+        <input type="text" class="max-sub-input pl-8 h-9 bg-transparent border border-gray-300 dark:border-gray-700 dark:text-white w-full rounded-md text-sm"/>
+      </div>
+    </div>
+    <button class="filter-button h-8 px-3 rounded-md shadow text-white bg-blue-500">Принять приглашение</button>
+  </div>
+</body>
+
