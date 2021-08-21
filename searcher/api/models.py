@@ -21,13 +21,16 @@ class Bloger(models.Model):
 
 
 class Trip(models.Model):
-    blogers = models.ManyToManyField(Bloger)
+    blogers = models.ManyToManyField(Bloger, blank=True)
     
     date_start = models.DateField()
     date_end = models.DateField()
 
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=2048)
+
+    def __str__(self):
+        return self.name
 
 
 class Post(models.Model):
