@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+searcher/auth_ok
+
 # Distribution / packaging
 .Python
 build/

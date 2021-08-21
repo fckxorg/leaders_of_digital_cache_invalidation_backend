@@ -13,8 +13,9 @@ from string import Template
 
 from .analytics import filters as f 
 from .analytics import sentiment_analysis as sa
-from .analytics import datetime_analysis as da 
-from .scraper import scraper
+from .analytics import datetime_analysis as da
+from .analytics import config as c
+from .scraper import scraper as sc
 
 def index(request):
     return render(request, 'index.html')
@@ -69,11 +70,24 @@ def send_posts(request):
 @csrf_exempt
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
-    users = []
-   # f.filter_users(data, users)
-    # data will be processed here later on
-    #TODO save blogers into database
-    # mock response
+
+    data['subs_hi'] = int(data['subs_hi']) if data['subs_hi'] != '' else None
+    data['subs_lo'] = int(data['subs_lo']) if data['subs_lo'] != '' else None
+    data['avg_likes'] = int(data['avg_likes']) if data['avg_likes'] != '' else None
+    data['avg_views'] = int(data['avg_views']) if data['avg_views'] != '' else None
+
+    driver = sc.init_scraper(c.APP_CONFIG['INSTA_LOGIN'], c.APP_CONFIG['INSTA_PASS'])
+    result = sc.search_bloggers(data['query'], driver, 5)
+    
+    for bloger in result:
+        bloger['likes'] = [int(value.replace(' ', '')) for value in bloger['likes']]
+        bloger['views'] = [int(value.replace(' ', '')) for value in bloger['views']]
+        bloger['followers'] = int(bloger['followers'].replace(' ', ''))
+
+    driver.close()
+    result = f.filter_users(data, result)
+    return JsonResponse({'blogers' : result})
+    """
     return JsonResponse (
         {
             "blogers" : 
@@ -105,6 +119,7 @@ def bloger_search(request):
             ]
         }
     )
+    """
 
 @csrf_exempt
 def send_email(request):
