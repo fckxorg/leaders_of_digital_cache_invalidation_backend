@@ -23,3 +23,7 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 ```
+
+## волк
+*посмотрите, какой он хороший!*
+![волк](https://external-preview.redd.it/HsiwGFhEWPiRqxAcdSt3lVskxIIi8Lr4wEam7_A2yuw.jpg?auto=webp&s=278e39f7ad237a5c611259e59c5e3d8e736d5ee4)
