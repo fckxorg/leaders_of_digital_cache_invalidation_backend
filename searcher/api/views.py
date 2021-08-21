@@ -76,17 +76,21 @@ def bloger_search(request):
     data['avg_likes'] = int(data['avg_likes']) if data['avg_likes'] != '' else None
     data['avg_views'] = int(data['avg_views']) if data['avg_views'] != '' else None
 
-    driver = sc.init_scraper(c.APP_CONFIG['INSTA_LOGIN'], c.APP_CONFIG['INSTA_PASS'])
-    result = sc.search_bloggers(data['query'], driver, 5)
-    
-    for bloger in result:
-        bloger['likes'] = [int(value.replace(' ', '')) for value in bloger['likes']]
-        bloger['views'] = [int(value.replace(' ', '')) for value in bloger['views']]
-        bloger['followers'] = int(bloger['followers'].replace(' ', ''))
+    if bool(data['db']):
+        return HttpResponse(200)
+    else:
+        driver = sc.init_scraper(c.APP_CONFIG['INSTA_LOGIN'], c.APP_CONFIG['INSTA_PASS'])
+        result = sc.search_bloggers(data['query'], driver, 5)
+        
+        for bloger in result:
+            bloger['likes'] = [int(value.replace(' ', '')) for value in bloger['likes']]
+            bloger['views'] = [int(value.replace(' ', '')) for value in bloger['views']]
+            bloger['followers'] = int(bloger['followers'].replace(' ', ''))
 
-    driver.close()
-    result = f.filter_users(data, result)
-    return JsonResponse({'blogers' : result})
+        driver.close()
+        result = f.filter_users(data, result)
+
+        return JsonResponse({'blogers' : result})
     """
     return JsonResponse (
         {
