@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="${bloger.link}" target="_blank">${bloger.name}</a>
                     <div class="network">
                     <div class="text-gray-400">${bloger.welness}</div>
-                        <i class="fab fa-youtube network-icon youtube-icon"></i>
+                        ${network_icon(bloger.network)}
                         </div>
                     </div>
                     <div class="flex items-center w-full margin-down-5">
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="ml-auto text-xs text-gray-500">${bloger.email}</div>
                     </div>
                     <div class="flex items-center w-full margin-down-5">
-                        <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Телефон</div>
+                        <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Телефон</div>
                         <div class="ml-auto text-xs text-gray-500">${bloger.phone}</div>
                     </div>
                     <div class="flex items-center w-full margin-down-5">
@@ -58,10 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Просмотры</div>
                         <div class="ml-auto text-xs text-gray-400">${bloger.avg_view}</div>
                     </div>
-                    <div class="flex items-center w-full">
-                        <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Гонорар</div>
-                        <div class="ml-auto text-xs text-gray-400">${bloger.payment}</div>
-                    </div>
                     </div>
                 `;
                 });
@@ -75,3 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function network_icon(name) {
+    if (name === 'youtube') {
+        return '<i class="fab fa-youtube network-icon youtube-icon"></i>';
+    } 
+    else if (name === 'instagram') {
+        return '<i class="fab fa-instagram network-icon"></i>';
+    }
+}
