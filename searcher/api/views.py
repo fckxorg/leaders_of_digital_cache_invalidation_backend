@@ -3,13 +3,15 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Bloger, Trip
+from .models import Bloger, Trip, Attraction
 
 from datetime import datetime
 import json
 from email.message import EmailMessage
 import smtplib
 from string import Template
+
+from .analytics import filters as f 
 
 def index(request):
     return render(request, 'index.html')
@@ -34,8 +36,9 @@ def accept_trip(request):
 @csrf_exempt
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
+    users = []
+    f.filter_users(data, users)
     # data will be processed here later on
-    print(data) 
     #TODO save blogers into database
     # mock response
     return JsonResponse (
@@ -108,3 +111,8 @@ def send_email(request):
 
     server.close()
     return HttpResponse(200)
+
+def get_attractions(request):
+    attractions = list(Attraction.objects.all())
+    response = {'attractions' : [attraction.serialize() for attraction in attractions]}
+    return JsonResponse(response)

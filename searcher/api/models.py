@@ -58,8 +58,19 @@ class Attraction(models.Model):
     name = models.CharField(max_length=200)
     photo = models.CharField(max_length=2048)
 
-    growth = models.IntegerField()
+    curr_interest = models.IntegerField()
     base_interest = models.IntegerField()
 
     def __str__(self):
         return self.name
+
+    def serialize(self):
+        return {
+            'lat': self.lat, 
+            'lng': self.lng, 
+            'name' : self.name, 
+            'photo' : self.photo, 
+            'curr_interest' : self.curr_interest, 
+            'base_interest' : self.base_interest
+        }
+
