@@ -14,6 +14,7 @@ from string import Template
 from .analytics import filters as f 
 from .analytics import sentiment_analysis as sa
 from .analytics import datetime_analysis as da 
+from .scraper import scraper
 
 def index(request):
     return render(request, 'index.html')

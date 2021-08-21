@@ -1,3 +1,6 @@
 [submodule "searcher/api/analytics"]
 	path = searcher/api/analytics
 	url = https://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@github.com/AlgebraicWolf/leadersofdigital-analytics-toolkit
+[submodule "searcher/api/scraper"]
+	path = searcher/api/scraper
+	url = https://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@github.com/KristinaKulabuhova/leaders_of_digital
