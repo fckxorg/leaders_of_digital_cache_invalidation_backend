@@ -12,6 +12,7 @@ import smtplib
 from string import Template
 
 from .analytics import filters as f 
+from .analytics import sentiment_analysis as sa
 
 def index(request):
     return render(request, 'index.html')
@@ -42,8 +43,24 @@ def send_posts(request):
 
     bloger = Bloger.objects.get(name=data['name'])
     trip = Trip.objects.get(name=data['trip'])
-    print(bloger)
-    print(trip)
+    links = data["links"].split('\n')
+    
+    for link in links:
+        post_data = sa.pull_post_data(link)
+        new_post = Post(
+                link=link, 
+                description=post_data['text'],
+                date=post_data['taken_at'],
+                likes=post_data['likes'],
+                views=post_data['views'],
+                comm_positive=post_data['user_reaction']['positive'],
+                comm_neutral=post_data['user_reaction']['neutral'],
+                comm_negative=post_data['user_reaction']['negative'],
+                bloger=bloger,
+                trip=trip
+                ) 
+        new_post.save()
+
     return HttpResponse(200)
 
 @csrf_exempt
