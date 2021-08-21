@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Bloger, Trip, Attraction
+from .models import Bloger, Trip, Attraction, Post
 
 from datetime import datetime
 import json
@@ -37,7 +37,7 @@ def accept_trip(request):
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
     users = []
-    f.filter_users(data, users)
+   # f.filter_users(data, users)
     # data will be processed here later on
     #TODO save blogers into database
     # mock response
@@ -137,3 +137,16 @@ def get_blogers_by_trip(request):
         })
     
     return JsonResponse(response)
+
+@csrf_exempt
+def get_post_by_trip_bloger(request): 
+    data = json.loads(request.body.decode('utf-8'))
+
+    trip = Trip.objects.get(name=data['trip'])
+    bloger = Bloger.objects.get(name=data['name'])
+
+    posts = Post.objects.filter(bloger=bloger, trip=trip)
+
+    response = {'posts' : [post.serialize() for post in posts]}
+    return JsonResponse(response)
+

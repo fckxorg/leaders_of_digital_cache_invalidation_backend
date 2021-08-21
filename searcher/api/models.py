@@ -53,10 +53,22 @@ class Post(models.Model):
     comm_negative = models.FloatField()
 
     bloger = models.ForeignKey(Bloger, on_delete=models.CASCADE)
-    trip = models.OneToOneField(Trip, on_delete=models.CASCADE)
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.description
+
+    def serialize(self):
+        return {
+            "link" : self.link,
+            "description" : self.description,
+            "date" : self.date,
+            "likes" : self.likes,
+            "views" : self.views,
+            "comm_positive" : self.comm_positive,
+            "comm_neutral" : self.comm_neutral,
+            "comm_negative" : self.comm_negative
+        }
 
 class Attraction(models.Model):
     lat = models.FloatField()
