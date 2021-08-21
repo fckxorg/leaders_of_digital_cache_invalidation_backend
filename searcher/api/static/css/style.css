@@ -248,7 +248,7 @@ Remove the inner padding in Chrome and Safari on macOS.
 */
 
 /**
-1. Correct the inability to style clickable types in iOS and Safari.
+1. Correct the inability to style clicable types in iOS and Safari.
 2. Change font properties to 'inherit' in Safari.
 */
 
@@ -1340,9 +1340,43 @@ video {
   }
 
   .xl\:w-72 {
-    width: 18rem;
+    width: 24rem;
   }
 }
 
 @media (min-width: 1536px) {
+}
+
+
+.w-72 {
+  width: 24rem;
+}
+
+
+
+.filter_item {
+  margin-bottom: 20px;
+}
+
+.margin-down-5 {
+  margin-bottom: 5px;
+}
+
+.network {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.network-icon {
+  font-size: 20px;
+  margin-left: 3px;
+}
+
+.youtube-icon {
+  color: red;
+}
+
+.bloger-card {
+  margin-bottom: 15px;
 }
