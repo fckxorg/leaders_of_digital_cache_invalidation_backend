@@ -5,12 +5,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import Bloger
 
+from datetime import datetime
 import json
 from email.message import EmailMessage
 import smtplib
 from string import Template
 
 def index(request):
+    return render(request, 'index.html')
+
+def accept_invite(request):
+    # TODO form for accept
     return render(request, 'index.html')
 
 @csrf_exempt
@@ -72,19 +77,21 @@ def send_email(request):
 
     for bloger in data['blogers']:
         print(bloger['name'])
-        email = Bloger.objects.get(name=bloger['name']).email
+        recipient = Bloger.objects.get(name=bloger['name'])
+        recipient.refused = True
+        recipient.refuse_date = datetime.today()
+        recipient.save()
+
         message = EmailMessage()
         message.set_content(Template(letter).substitute(name=bloger['name']))
 
         message['Subject'] = data['subject']
         message['From'] = sender_email
-        message['To'] = email
+        message['To'] = recipient.email
         
-        print('Sending message to ' + email + '...\t', end='')
+        print('Sending message to ' + recipient.email + '...\t', end='')
         server.send_message(message)
         print('sent')
-
-        # TODO form for accept
 
     server.close()
     return HttpResponse(200)

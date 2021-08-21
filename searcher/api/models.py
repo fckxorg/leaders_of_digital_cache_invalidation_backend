@@ -13,6 +13,9 @@ class Bloger(models.Model):
     network = models.CharField(max_length=20)
     wellness = models.FloatField()
 
+    refused = models.BooleanField()
+    refuse_date = models.DateField()
+
     def __str__(self):
         return self.name
 
