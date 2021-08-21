@@ -14,4 +14,6 @@ urlpatterns = [
     path('attraction/get', views.get_attractions, name='get_attractions'),
     path('trip/bloger', views.get_blogers_by_trip, name='get_blogers_by_trip'),
     path('trip/post', views.get_post_by_trip_bloger, name='get_post_by_trip_bloger'),
+    path('trip/send', views.send_posts, name='send_posts'),
+    path('trip/form', views.post_form, name='post_form'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

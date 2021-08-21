@@ -33,6 +33,19 @@ def accept_trip(request):
 
     return HttpResponse(200)
 
+def post_form(request):
+    return render(request, 'material.html')
+
+@csrf_exempt
+def send_posts(request):
+    data = json.loads(request.body.decode('utf-8'))
+
+    bloger = Bloger.objects.get(name=data['name'])
+    trip = Trip.objects.get(name=data['trip'])
+    print(bloger)
+    print(trip)
+    return HttpResponse(200)
+
 @csrf_exempt
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
