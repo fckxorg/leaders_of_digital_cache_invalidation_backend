@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("Nothing. Status: " + response.status);
                 return;
             }
+
+            $('.send-email-button').toggleClass("bg-blue-500 bg-green-100");
+            $('.send-email-button').addClass("text-green-600");
+            $('.send-email-button').text("Отправлено!");
         })
         .catch(error => {
             console.log("Fetch error: -S", error);
