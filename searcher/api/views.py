@@ -13,6 +13,7 @@ from string import Template
 
 from .analytics import filters as f 
 from .analytics import sentiment_analysis as sa
+from .analytics import datetime_analysis as da 
 
 def index(request):
     return render(request, 'index.html')
@@ -63,6 +64,7 @@ def send_posts(request):
 
     return HttpResponse(200)
 
+# TODO integrate with scarper and analytics
 @csrf_exempt
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
@@ -142,8 +144,17 @@ def send_email(request):
     server.close()
     return HttpResponse(200)
 
+# TODO integrate with analytics module
 def get_attractions(request):
-    attractions = list(Attraction.objects.all())
+    attractions = Attraction.objects.all()
+    
+    for attraction in attractions:
+        nearby = da.get_geoposition_instagram_posts(attraction.lat, attraction.lng, 30)
+        counter = da.calculate_daily_stats(nearby)
+        attraction.base_interest = 0
+        attraction.curr_interest = counter[datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)]
+        attraction.save()
+
     response = {'attractions' : [attraction.serialize() for attraction in attractions]}
     return JsonResponse(response)
 
@@ -163,7 +174,8 @@ def get_blogers_by_trip(request):
         response['blogers'].append({
             'name': bloger.name,
             'photo' : bloger.photo,
-            'link' : bloger.link
+            'link' : bloger.link,
+            'welness' : bloger.wellness
         })
     
     return JsonResponse(response)
