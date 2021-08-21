@@ -25,11 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 let bloger_cards_html = "";
 
-                data.blogers.forEach(bloger => {
+                data.blogers.forEach((bloger, key, blogers) => {
                     console.log(bloger);
 
+                    let bloger_card_class = 'bloger-card'
+                    if (key % 2 !== 0) {
+                        bloger_card_class = 'last-bloger-card';
+                    }
+
                     bloger_cards_html += `
-                    <div class="bloger-card bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
+                    <div class="${bloger_card_class} bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow">
                         <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
                             <img src="${bloger.photo}" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
                             <a href="${bloger.link}" target="_blank">${bloger.name}</a>
@@ -84,4 +89,8 @@ function network_icon(name) {
     else if (name === 'instagram') {
         return '<i class="fab fa-instagram network-icon"></i>';
     }
+}
+
+function bloger_card_class(blogers, ) {
+
 }
