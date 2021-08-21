@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import Bloger, Trip, Attraction, Post
 
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 from email.message import EmailMessage
 import smtplib
@@ -152,7 +152,7 @@ def get_attractions(request):
         nearby = da.get_geoposition_instagram_posts(attraction.lat, attraction.lng, 30)
         counter = da.calculate_daily_stats(nearby)
         attraction.base_interest = 0
-        attraction.curr_interest = counter[datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)]
+        attraction.curr_interest = counter[datetime.today().replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc)]
         attraction.save()
 
     response = {'attractions' : [attraction.serialize() for attraction in attractions]}
