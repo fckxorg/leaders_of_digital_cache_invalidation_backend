@@ -1340,7 +1340,7 @@ video {
   }
 
   .xl\:w-72 {
-    width: 18rem;
+    width: 24rem;
   }
 }
 
@@ -1348,7 +1348,9 @@ video {
 }
 
 
-
+.w-72 {
+  width: 24rem;
+}
 
 
 

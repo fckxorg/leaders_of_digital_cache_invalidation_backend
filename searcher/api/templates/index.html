@@ -64,7 +64,7 @@
   </div>
   <div class="flex-grow overflow-hidden h-full flex flex-col">
     <div class="flex-grow flex overflow-x-hidden">
-      <div class="xl:w-72 w-48 flex-shrink-0 border-r border-gray-200 dark:border-gray-800 h-full overflow-y-auto lg:block hidden p-5">
+      <div class="w-72 flex-shrink-0 border-r border-gray-200 dark:border-gray-800 h-full overflow-y-auto lg:block hidden p-5">
         <div class="text-xs text-gray-400 tracking-wider">БЛОГЕРЫ</div>
         <div class="relative mt-2">
           <input type="text" class="query-input pl-8 h-9 bg-transparent border border-gray-300 dark:border-gray-700 dark:text-white w-full rounded-md text-sm" placeholder="Поиск" />
@@ -116,112 +116,6 @@
           </div>
 
           <div class="bloger-cards-container">
-            <!-- <div class="bloger-card bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
-              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=046c29138c1335ef8edee7daf521ba50" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                <a href="https://google.com" target="_blank">Kathyrn Murphy</a>
-                <div class="network">
-                  <div class="text-gray-400">0.73</div>
-                  <i class="fab fa-youtube network-icon youtube-icon"></i>
-                </div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Почта</div>
-                <div class="ml-auto text-xs text-gray-500">aaaa@aaaaa.com</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Телефон</div>
-                <div class="ml-auto text-xs text-gray-500">8 (999) 999-99-99</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Подписчики</div>
-                <div class="ml-auto text-xs text-gray-400">100 000</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Лайки</div>
-                <div class="ml-auto text-xs text-gray-400">5 000</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Просмотры</div>
-                <div class="ml-auto text-xs text-gray-400">50 000</div>
-              </div>
-              <div class="flex items-center w-full">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Гонорар</div>
-                <div class="ml-auto text-xs text-gray-400">50 000</div>
-              </div>
-            </div>
-  
-            <div class="bloger-card bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
-              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-                <img src="https://assets.codepen.io/344846/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=1582611188&width=512" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                Mert Cukuren
-                <div class="network">
-                  <div class="text-gray-400">0.61</div>
-                  <i class="fab fa-instagram network-icon"></i>
-                </div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Почта</div>
-                <div class="ml-auto text-xs text-gray-500">aaaa@aaaaa.com</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Телефон</div>
-                <div class="ml-auto text-xs text-gray-500">8 (999) 999-99-99</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Подписчики</div>
-                <div class="ml-auto text-xs text-gray-400">100 000</div>
-              </div>
-              <div class="flex items-center w-full margin-down-5">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Лайки</div>
-                <div class="ml-auto text-xs text-gray-400">5 000</div>
-              </div>
-              <div class="flex items-center w-full">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Гонорар</div>
-                <div class="ml-auto text-xs text-gray-400">50 000</div>
-              </div>
-            </div>
-  
-            <button class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow-lg relative ring-2 ring-blue-500 focus:outline-none">
-              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-                <img src="https://assets.codepen.io/344846/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=1582611188&width=512" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                Mert Cukuren
-              </div>
-              <div class="flex items-center w-full">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Sales</div>
-                <div class="ml-auto text-xs text-gray-500">$2,794.00</div>
-              </div>
-            </button>
-            <button class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
-              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-                <img src="https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                Albert Flores
-              </div>
-              <div class="flex items-center w-full">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Marketing</div>
-                <div class="ml-auto text-xs text-gray-400">$0.00</div>
-              </div>
-            </button>
-            <button class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
-              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                Jane Cooper
-              </div>
-              <div class="flex items-center w-full">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Design</div>
-                <div class="ml-auto text-xs text-gray-500">$762.00</div>
-              </div>
-            </button>
-            <button class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
-              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-                <img src="https://images.unsplash.com/photo-1507120878965-54b2d3939100?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=99fbace66d1bfa48c9c6dc8afcac3aab" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                Ronald Richards
-              </div>
-              <div class="flex items-center w-full">
-                <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Sales</div>
-                <div class="ml-auto text-xs text-gray-400">$0.00</div>
-              </div>
-            </button> -->
           </div>
           
         </div>
@@ -238,25 +132,46 @@
                 <!-- <div class="text-xs text-gray-400 dark:text-gray-400">Account balance:</div>
                 <div class="text-gray-900 text-lg dark:text-white">$2,794.00</div> -->
               </div>
-              <button class="w-8 h-8 ml-4 text-gray-400 shadow dark:text-gray-400 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700">
+              <!-- <button class="w-8 h-8 ml-4 text-gray-400 shadow dark:text-gray-400 rounded-full flex items-center justify-center border border-gray-200 dark:border-gray-700">
                 <svg viewBox="0 0 24 24" class="w-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
                   <circle cx="5" cy="12" r="1"></circle>
                 </svg>
-              </button>
+              </button> -->
             </div>
           </div>
-          <!-- <div class="flex items-center space-x-3 sm:mt-7 mt-4">
-            <a href="#" class="px-3 border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white pb-1.5">Activities</a>
-            <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5">Transfer</a>
+          <div class="flex items-center space-x-3 sm:mt-7 mt-4">
+            <a href="#" class="px-3 border-b-2 border-blue-500 text-blue-500 dark:text-white dark:border-white pb-1.5">Отправка письма</a>
+            <!-- <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5">Transfer</a>
             <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5 sm:block hidden">Budgets</a>
             <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5 sm:block hidden">Notifications</a>
-            <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5 sm:block hidden">Cards</a>
-          </div> -->
+            <a href="#" class="px-3 border-b-2 border-transparent text-gray-600 dark:text-gray-400 pb-1.5 sm:block hidden">Cards</a> -->
+          </div>
         </div>
-        <!-- <div class="sm:p-7 p-4">
-          <div class="flex w-full items-center mb-7">
+        <div class="sm:p-7 p-4">
+            <div class="bg-white p-3 w-full flex flex-col rounded-md dark:bg-gray-800 shadow">
+              <div class="filter_item">
+                <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                  Тема письма
+                </div>
+                <div class="flex items-center w-full">
+                  <input type="text" class="mail-subject-input pl-8 h-9 bg-transparent border border-gray-300 dark:border-gray-700 dark:text-white w-full rounded-md text-sm" placeholder="Самарский трип" />
+                </div>
+              </div>
+              <div class="filter_item">
+                <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                  Текст письма
+                </div>
+                <div class="flex items-center w-full">
+                  <textarea rows="15" class="pl-8 bg-transparent border border-gray-300 dark:border-gray-700 dark:text-white w-full rounded-md text-sm"></textarea>
+                </div>
+              </div>
+  
+              <button class="h-8 px-3 rounded-md shadow text-white bg-blue-500">Отправить</button>
+            </div>
+
+          <!-- <div class="flex w-full items-center mb-7">
             <button class="inline-flex mr-3 items-center h-8 pl-2.5 pr-2 rounded-md shadow text-gray-700 dark:text-gray-400 dark:border-gray-800 border border-gray-200 leading-none py-0">
               <svg viewBox="0 0 24 24" class="w-4 mr-2 text-gray-400 dark:text-gray-600" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -915,8 +830,8 @@
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </button>
-          </div>
-        </div> -->
+          </div> --->
+        </div>
       </div>
     </div>
   </div>
