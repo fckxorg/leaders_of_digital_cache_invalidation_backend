@@ -3,15 +3,21 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Bloger, Trip, Attraction
+from .models import Bloger, Trip, Attraction, Post
 
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 from email.message import EmailMessage
 import smtplib
 from string import Template
 
+<<<<<<< HEAD
 # from .analytics import filters as f 
+=======
+from .analytics import filters as f 
+from .analytics import sentiment_analysis as sa
+from .analytics import datetime_analysis as da 
+>>>>>>> master
 
 def index(request):
     return render(request, 'index.html')
@@ -33,11 +39,45 @@ def accept_trip(request):
 
     return HttpResponse(200)
 
+def post_form(request):
+    return render(request, 'material.html')
+
+@csrf_exempt
+def send_posts(request):
+    data = json.loads(request.body.decode('utf-8'))
+
+    bloger = Bloger.objects.get(name=data['name'])
+    trip = Trip.objects.get(name=data['trip'])
+    links = data["links"].split('\n')
+    
+    for link in links:
+        post_data = sa.pull_post_data(link)
+        new_post = Post(
+                link=link, 
+                description=post_data['text'],
+                date=post_data['taken_at'],
+                likes=post_data['likes'],
+                views=post_data['views'],
+                comm_positive=post_data['user_reaction']['positive'],
+                comm_neutral=post_data['user_reaction']['neutral'],
+                comm_negative=post_data['user_reaction']['negative'],
+                bloger=bloger,
+                trip=trip
+                ) 
+        new_post.save()
+
+    return HttpResponse(200)
+
+# TODO integrate with scarper and analytics
 @csrf_exempt
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
     users = []
+<<<<<<< HEAD
     # f.filter_users(data, users)
+=======
+   # f.filter_users(data, users)
+>>>>>>> master
     # data will be processed here later on
     #TODO save blogers into database
     # mock response
@@ -112,8 +152,17 @@ def send_email(request):
     server.close()
     return HttpResponse(200)
 
+# TODO integrate with analytics module
 def get_attractions(request):
-    attractions = list(Attraction.objects.all())
+    attractions = Attraction.objects.all()
+    
+    for attraction in attractions:
+        nearby = da.get_geoposition_instagram_posts(attraction.lat, attraction.lng, 30)
+        counter = da.calculate_daily_stats(nearby)
+        attraction.base_interest = 0
+        attraction.curr_interest = counter[datetime.today().replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc)]
+        attraction.save()
+
     response = {'attractions' : [attraction.serialize() for attraction in attractions]}
     return JsonResponse(response)
 
@@ -133,7 +182,21 @@ def get_blogers_by_trip(request):
         response['blogers'].append({
             'name': bloger.name,
             'photo' : bloger.photo,
-            'link' : bloger.link
+            'link' : bloger.link,
+            'welness' : bloger.wellness
         })
     
     return JsonResponse(response)
+
+@csrf_exempt
+def get_post_by_trip_bloger(request): 
+    data = json.loads(request.body.decode('utf-8'))
+
+    trip = Trip.objects.get(name=data['trip'])
+    bloger = Bloger.objects.get(name=data['name'])
+
+    posts = Post.objects.filter(bloger=bloger, trip=trip)
+
+    response = {'posts' : [post.serialize() for post in posts]}
+    return JsonResponse(response)
+
