@@ -1,0 +1,3 @@
+[submodule "searcher/api/analytics"]
+	path = searcher/api/analytics
+	url = https://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@github.com/AlgebraicWolf/leadersofdigital-analytics-toolkit
