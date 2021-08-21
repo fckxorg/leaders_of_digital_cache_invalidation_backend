@@ -11,7 +11,7 @@ from email.message import EmailMessage
 import smtplib
 from string import Template
 
-from .analytics import filters as f 
+# from .analytics import filters as f 
 
 def index(request):
     return render(request, 'index.html')
@@ -37,7 +37,7 @@ def accept_trip(request):
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
     users = []
-    f.filter_users(data, users)
+    # f.filter_users(data, users)
     # data will be processed here later on
     #TODO save blogers into database
     # mock response

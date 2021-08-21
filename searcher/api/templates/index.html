@@ -39,19 +39,6 @@
           <polyline points="9 22 9 12 15 12 15 22"></polyline>
         </svg>
       </div>
-      <!-- <button class="h-10 w-12 dark:bg-gray-700 dark:text-white rounded-md flex items-center justify-center bg-blue-100 text-blue-500">
-        <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-        </svg>
-      </button> -->
-      <!-- <button class="h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
-        <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-          <line x1="12" y1="11" x2="12" y2="17"></line>
-          <line x1="9" y1="14" x2="15" y2="14"></line>
-        </svg>
-      </button> -->
       <div class="feedback-view-button cursor-pointer h-10 w-12 dark:text-gray-500 rounded-md flex items-center justify-center">
         <svg viewBox="0 0 24 24" class="h-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="7" height="7"></rect>
@@ -124,8 +111,54 @@
         </div>
       </div>
 
-      <div class="feedback-block flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
-        Feedback block
+      <div class="feedback-block flex-grow flex-row flex bg-white dark:bg-gray-900 overflow-y-auto">
+        <div class="w-feedback-col flex-shrink-0 border-r border-gray-200 dark:border-gray-800 h-full overflow-y-auto lg:block hidden p-5">
+          <div class="text-xs text-gray-400 tracking-wider col-title">ПОЕЗДКИ</div>
+          <div class="trips-col">
+            <!-- <div class="last-bloger-card bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow">
+              <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                  <img src="https://sun9-80.userapi.com/impg/uV_xX0PkqE6v6dOIRTs-rFLh01Z0xInSjCHkDA/YQoZJxydmZY.jpg?size=1620x2160&amp;quality=96&amp;sign=0c234234dc22b2c64c17857e4a6d3293&amp;type=album" class="w-7 h-7 mr-2 rounded-full" alt="profile">
+                  <div>fckxorg</div>
+                  <div class="network">
+                      <div class="text-gray-400">0.70</div>
+                      <i class="fab fa-youtube network-icon youtube-icon" aria-hidden="true"></i>
+                  </div>
+              </div>
+              <div class="flex items-center w-full margin-down-5">
+                  <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Почта</div>
+                  <div class="ml-auto text-xs text-gray-500">max.kokryashkin@gmail.com</div>
+              </div>
+              <div class="flex items-center w-full margin-down-5">
+                  <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Телефон</div>
+                  <div class="ml-auto text-xs text-gray-500">+79859517358</div>
+              </div>
+              <div class="flex items-center w-full margin-down-5">
+                  <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Подписчики</div>
+                  <div class="ml-auto text-xs text-gray-400">200</div>
+              </div>
+              <div class="flex items-center w-full margin-down-5">
+                  <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Лайки</div>
+                  <div class="ml-auto text-xs text-gray-400">80</div>
+              </div>
+              <div class="flex items-center w-full margin-down-5">
+                  <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Просмотры</div>
+                  <div class="ml-auto text-xs text-gray-400">10000</div>
+              </div>
+
+              <div class="flex items-center w-full">
+                  <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Выбрать</div>
+                  <input type="checkbox" class="ml-auto text-xs text-gray-400 email-checkbox" id="fckxorg-input">
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="w-feedback-col flex-shrink-0 border-r bg-gray-100 border-gray-200 dark:border-gray-800 h-full overflow-y-auto lg:block hidden p-5">
+          <div class="text-xs text-gray-400 tracking-wider col-title">БЛОГЕРЫ</div>
+          <div class="blogers-col"></div>
+        </div>
+        <div class="w-feedback-col flex-shrink-0 border-r border-gray-200 dark:border-gray-800 h-full overflow-y-auto lg:block hidden p-5">
+          <div class="text-xs text-gray-400 tracking-wider col-title">ПОСТЫ</div>
+        </div>
       </div>
 
       <div class="email-block flex-grow bg-white dark:bg-gray-900 overflow-y-auto">
@@ -174,9 +207,6 @@
   
               <button class="send-email-button h-8 w-96 px-3 rounded-md shadow text-white bg-blue-500">Отправить</button>
             </div>
-
-
-
         </div>
       </div>
     </div>

@@ -1425,11 +1425,6 @@ video {
   outline: none;
 }
 
-.sightseeing-name-popular {
-  /* align-content: space-around; */
-  /* height: 10px; */
-}
-
 .popularity {
   width: 100%;
   /* margin-top: 40px; */
@@ -1445,6 +1440,15 @@ video {
   color: red;
 }
 
-/* .sightseeing-name { */
-  /* margin-top: 20px; */
-/* } */
+.w-feedback-col {
+  width: 33.333333%;
+}
+
+.col-title {
+  margin-bottom: 10px;
+}
+
+.trip-card {
+  width: 100%;
+  margin-bottom: 15px;
+}

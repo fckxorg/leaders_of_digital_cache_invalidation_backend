@@ -2,6 +2,53 @@ document.addEventListener('DOMContentLoaded', function () {
     $('.map-block').hide();
     $('.feedback-block').hide();
 
+    $(document.body).on('click', '.trip-card', function () {
+        $(this).parent().find('.trip-card').css('background-color', 'rgba(255, 255, 255, var(--tw-bg-opacity))');
+        $(this).css('background-color', 'rgba(244, 244, 245, var(--tw-bg-opacity))');
+
+        let bloger_req = {
+            name: 'Мифы и Легенды Самары'
+        }
+
+        fetch('/trip/bloger', {
+            method: 'post',
+            body: JSON.stringify(bloger_req)
+        })
+        .then(response => {
+            if (response.status !== 200) {
+                console.log("Nothing. Status: " + response.status);
+                return;
+            }
+    
+            response.json().then(data => {
+                console.log(data);
+                
+                let blogers_cards_html = "";
+
+                data.blogers.forEach((bloger, key, blogers) => {
+                    blogers_cards_html += `
+                    <div class="trip-card cursor-pointer bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow">
+                        <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                            <img src="${bloger.photo}" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
+                            <a href="${bloger.link}" target="_blank">${bloger.name}</a>
+                            <div class="network">
+                                <div class="text-gray-400">${bloger.welness}</div>
+                                <i class="fab fa-instagram network-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                });
+
+                $('.blogers-col').html(blogers_cards_html);
+            });
+        })
+        .catch(error => {
+            console.log("Fetch error: -S", error);
+        });
+    });
+
+
     $('.email-view-button').on('click', () => {
         $('.email-view-button').addClass('bg-blue-100 text-blue-500');
         $('.feedback-view-button').removeClass('bg-blue-100 text-blue-500');
@@ -14,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     $('.feedback-view-button').on('click', () => {
+
         $('.feedback-view-button').addClass('bg-blue-100 text-blue-500');
         $('.email-view-button').removeClass('bg-blue-100 text-blue-500');
 
@@ -22,6 +70,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
         $('.map-block').show();
         $('.feedback-block').show();
+    });
+
+    fetch('/trip/get')
+    .then(response => {
+        if (response.status !== 200) {
+            console.log("Nothing. Status: " + response.status);
+            return;
+        }
+
+        response.json().then(data => {
+            console.log(data);
+
+            let trip_cards_html = "";
+
+                data.trips.forEach((trip, key, trips) => {
+                    console.log(trip);
+
+                    trip_cards_html += `
+                    <div class="trip-card cursor-pointer bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow">
+                        <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                            <div class="trip-name">${trip.name}</div>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Начало</div>
+                            <div class="ml-auto text-xs text-gray-500">${trip.date_start}</div>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Конец</div>
+                            <div class="ml-auto text-xs text-gray-500">${trip.date_end}</div>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Описание</div>
+                        </div>
+                        <div class="text-xs text-gray-400">${trip.description}</div>
+                    </div>
+                `;
+                });
+
+                $('.trips-col').html(trip_cards_html);
+        });
+    })
+    .catch(error => {
+        console.log("Fetch error: -S", error);
     });
 
     $('.send-email-button').on('click', () => {
@@ -155,47 +246,66 @@ function network_icon(name) {
     }
 }
 
-function bloger_card_class(blogers, ) {
-
-}
-
-
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 53.1955, lng: 50.102179 },
         zoom: 11,
     });
 
-    let content_info = `
-        <div class="flex xl:flex-col flex-row items-center font-medium text-gray-900 dark:text-white pb-2 border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Samara_opera.jpg/250px-Samara_opera.jpg" class="w-20 h-20 mr-2 rounded-full" alt="profile" />
-            <div class="sightseeing-name-popular">
-                <div class="text-lg sightseeing-name">Площадь Куйбышева</div>
-                <div class="popularity flex flex-row justify-start">
-                    <div>Популярность: </div>
-                    <div class="text-gray-400 network">150</div>
-                    <i class="fas fa-arrow-up green-arrow-up"></i>
-                </div>
-            </div>
-        </div>
-    `;
+    fetch('/attraction/get')
+    .then(response => {
+        if (response.status !== 200) {
+            console.log("Nothing. Status: " + response.status);
+            return;
+        }
 
-    // <i class="fas fa-arrow-down red-arrow-down"></i>
+        response.json().then(data => {
+            console.log(data);
 
-    const infowindow = new google.maps.InfoWindow({
-        content: content_info,
-    });
+            data.attractions.forEach(element => {
+                let content_info = `
+                    <div class="flex xl:flex-col flex-row items-center font-medium text-gray-900 dark:text-white pb-2 border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                        <img src="${element.photo}" class="w-20 h-20 mr-2 rounded-full" alt="profile" />
+                        <div class="sightseeing-name-popular">
+                            <div class="text-lg sightseeing-name">${element.name}</div>
+                            <div class="popularity flex flex-row justify-start">
+                                <div>Популярность: </div>
+                                <div class="text-gray-400 network">${element.curr_interest - element.base_interest}</div>
+                                ${interest_arrow(element.curr_interest, element.base_interest)}
+                            </div>
+                        </div>
+                    </div>
+                `;
 
-    const marker = new google.maps.Marker({
-        position: { lat: 53.1955, lng: 50.102179 },
-        map,
-    });
+                const infowindow = new google.maps.InfoWindow({
+                    content: content_info,
+                });
 
-    marker.addListener("click", () => {
-        infowindow.open({
-          anchor: marker,
-          map,
-          shouldFocus: false,
+                const marker = new google.maps.Marker({
+                    position: { lat: element.lat, lng: element.lng },
+                    map,
+                });
+
+                marker.addListener("click", () => {
+                    infowindow.open({
+                        anchor: marker,
+                        map,
+                        shouldFocus: false,
+                    });
+                });
+            });
         });
+    })
+    .catch(error => {
+        console.log("Fetch error: -S", error);
     });
+}
+
+function interest_arrow(current, base) {
+    if (current - base >= 0) {
+        return '<i class="fas fa-arrow-up green-arrow-up"></i>';
+    }
+    else {
+        return '<i class="fas fa-arrow-down red-arrow-down"></i>';
+    }
 }
