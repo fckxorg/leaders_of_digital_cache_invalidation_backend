@@ -56,9 +56,9 @@ def send_posts(request):
                 date=post_data['taken_at'],
                 likes=post_data['likes'],
                 views=post_data['views'],
-                comm_positive=post_data['user_reaction']['positive'],
-                comm_neutral=post_data['user_reaction']['neutral'],
-                comm_negative=post_data['user_reaction']['negative'],
+                comm_positive=round(post_data['user_reaction']['positive'], 2),
+                comm_neutral=round(post_data['user_reaction']['neutral'], 2),
+                comm_negative=round(post_data['user_reaction']['negative'], 2),
                 bloger=bloger,
                 trip=trip
                 ) 
