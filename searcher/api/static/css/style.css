@@ -1386,3 +1386,8 @@ video {
   margin-top: 15%;
   width: 30rem; 
 }
+
+.greeter {
+  text-align: center;
+  margin-left: 4rem;
+}

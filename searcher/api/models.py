@@ -26,6 +26,7 @@ class Trip(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
 
+    name = models.CharField(max_length=200)
     description = models.CharField(max_length=2048)
 
 

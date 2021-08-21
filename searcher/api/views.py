@@ -18,6 +18,9 @@ def accept_invite(request):
     # TODO form for accept
     return render(request, 'accept.html')
 
+def accept_trip(request):
+    return HttpResponse(200)
+
 @csrf_exempt
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
