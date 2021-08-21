@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', function () {
+    $('.send-email-button').on('click', () => {
+        let blogers_names = [];
+
+        $('.email-checkbox:checkbox:checked').each((index, cur_elem) => {
+            let cur_elem_id = $(cur_elem).attr('id');
+            let name = cur_elem_id.split('-input', 1);
+
+            blogers_names.push({name: name[0]});
+        });
+
+
+        let email_form = {
+            subject: $('.mail-subject-input').val(),
+            template: $('.mail-template-input').val(),
+            blogers: blogers_names
+        }
+
+        fetch('/bloger/send_email', {
+            method: 'post',
+            body:JSON.stringify(email_form)
+        })
+        .then(response => {
+            if (response.status !== 200) {
+                console.log("Nothing. Status: " + response.status);
+                return;
+            }
+        })
+        .catch(error => {
+            console.log("Fetch error: -S", error);
+        });
+
+        console.log(email_form);
+    });
+
+
     $('.filter-button').on('click', () => {
         let filter_form = {
           query: $('.query-input').val(),
@@ -66,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         <div class="flex items-center w-full">
                             <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-green-100 text-green-600 rounded-md">Выбрать</div>
-                            <input type="checkbox" class="ml-auto text-xs text-gray-400"></input>
+                            <input type="checkbox" class="ml-auto text-xs text-gray-400 email-checkbox" id="${bloger.name}-input"></input>
                         </div>
                     </div>
                 `;
