@@ -701,6 +701,10 @@ video {
   justify-content: flex-end;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -1177,6 +1181,10 @@ video {
   width: 5rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .w-48 {
   width: 12rem;
 }
@@ -1412,3 +1420,31 @@ video {
   text-align: center;
   margin-left: 4rem;
 }
+
+.none-outline {
+  outline: none;
+}
+
+.sightseeing-name-popular {
+  /* align-content: space-around; */
+  /* height: 10px; */
+}
+
+.popularity {
+  width: 100%;
+  /* margin-top: 40px; */
+}
+
+.green-arrow-up {
+  margin-left: 3px;
+  color: rgba(16, 185, 129, var(--tw-bg-opacity));
+}
+
+.red-arrow-down {
+  margin-left: 3px;
+  color: red;
+}
+
+/* .sightseeing-name { */
+  /* margin-top: 20px; */
+/* } */

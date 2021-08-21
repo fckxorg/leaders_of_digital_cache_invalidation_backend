@@ -1,4 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
+    $('.map-block').hide();
+    $('.feedback-block').hide();
+
+    $('.email-view-button').on('click', () => {
+        $('.email-view-button').addClass('bg-blue-100 text-blue-500');
+        $('.feedback-view-button').removeClass('bg-blue-100 text-blue-500');
+
+        $('.map-block').hide();
+        $('.feedback-block').hide();
+
+        $('.filter-and-cards-block').show();
+        $('.email-block').show();
+    });
+
+    $('.feedback-view-button').on('click', () => {
+        $('.feedback-view-button').addClass('bg-blue-100 text-blue-500');
+        $('.email-view-button').removeClass('bg-blue-100 text-blue-500');
+
+        $('.filter-and-cards-block').hide();
+        $('.email-block').hide();
+
+        $('.map-block').show();
+        $('.feedback-block').show();
+    });
+
     $('.send-email-button').on('click', () => {
         let blogers_names = [];
 
@@ -77,9 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
                             <img src="${bloger.photo}" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
                             <a href="${bloger.link}" target="_blank">${bloger.name}</a>
-                        <div class="network">
-                        <div class="text-gray-400">${bloger.welness}</div>
-                            ${network_icon(bloger.network)}
+                            <div class="network">
+                                <div class="text-gray-400">${bloger.welness}</div>
+                                ${network_icon(bloger.network)}
                             </div>
                         </div>
                         <div class="flex items-center w-full margin-down-5">
@@ -132,4 +157,45 @@ function network_icon(name) {
 
 function bloger_card_class(blogers, ) {
 
+}
+
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 53.1955, lng: 50.102179 },
+        zoom: 11,
+    });
+
+    let content_info = `
+        <div class="flex xl:flex-col flex-row items-center font-medium text-gray-900 dark:text-white pb-2 border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Samara_opera.jpg/250px-Samara_opera.jpg" class="w-20 h-20 mr-2 rounded-full" alt="profile" />
+            <div class="sightseeing-name-popular">
+                <div class="text-lg sightseeing-name">Площадь Куйбышева</div>
+                <div class="popularity flex flex-row justify-start">
+                    <div>Популярность: </div>
+                    <div class="text-gray-400 network">150</div>
+                    <i class="fas fa-arrow-up green-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // <i class="fas fa-arrow-down red-arrow-down"></i>
+
+    const infowindow = new google.maps.InfoWindow({
+        content: content_info,
+    });
+
+    const marker = new google.maps.Marker({
+        position: { lat: 53.1955, lng: 50.102179 },
+        map,
+    });
+
+    marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+          shouldFocus: false,
+        });
+    });
 }
