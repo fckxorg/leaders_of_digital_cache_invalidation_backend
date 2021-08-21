@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
         $(this).css('border-width', 'medium');
         $(this).css('border-color', 'gray');
 
+        $(document).find('.post-card').hide();
+
         let bloger_req = {
             name: $(this).find('.trip-name').text()
         }
