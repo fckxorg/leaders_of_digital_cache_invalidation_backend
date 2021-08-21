@@ -121,3 +121,19 @@ def get_trips(request):
     trips = list(Trip.objects.all())
     response = {'trips' : [trip.serialize() for trip in trips]}
     return JsonResponse(response)
+
+@csrf_exempt
+def get_blogers_by_trip(request):
+    data = json.loads(request.body.decode('utf-8'))
+    trip = Trip.objects.get(name=data['name'])
+    blogers = list(trip.blogers.all())
+    response = {'blogers' : []}
+    
+    for bloger in blogers:
+        response['blogers'].append({
+            'name': bloger.name,
+            'photo' : bloger.photo,
+            'link' : bloger.link
+        })
+    
+    return JsonResponse(response)
