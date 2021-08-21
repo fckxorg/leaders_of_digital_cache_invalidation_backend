@@ -32,6 +32,13 @@ class Trip(models.Model):
     def __str__(self):
         return self.name
 
+    def serialize(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "date_start" : self.date_start,
+            "date_end" : self.date_end
+        }
 
 class Post(models.Model):
     link = models.CharField(max_length=2048)

@@ -116,3 +116,8 @@ def get_attractions(request):
     attractions = list(Attraction.objects.all())
     response = {'attractions' : [attraction.serialize() for attraction in attractions]}
     return JsonResponse(response)
+
+def get_trips(request):
+    trips = list(Trip.objects.all())
+    response = {'trips' : [trip.serialize() for trip in trips]}
+    return JsonResponse(response)
