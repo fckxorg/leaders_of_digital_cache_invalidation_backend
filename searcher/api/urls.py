@@ -10,4 +10,5 @@ urlpatterns = [
     path('bloger/send_email', views.send_email, name='send_email'),
     path('bloger/accept', views.accept_invite, name='accept_invite'),
     path('trip/accept', views.accept_trip, name='accept_trip'),
+    path('attraction/get', views.get_attractions, name='get_attractions'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
