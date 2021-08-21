@@ -229,12 +229,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     $('.filter-button').on('click', () => {
+        console.log($('.db-checkbox').is(':checked'));
+
         let filter_form = {
           query: $('.query-input').val(),
           subs_lo: $('.min-sub-input').val(),
           subs_hi: $('.max-sub-input').val(),
           avg_likes: $('.avg-likes-input').val(),
           avg_views: $('.avg-views-input').val(),
+          db: checkbox_val($('.db-checkbox').is(':checked'))
         };
     
         console.log(filter_form);
@@ -390,5 +393,14 @@ function percent_text(percent) {
     }
     else {
         return ''
+    }
+}
+
+function checkbox_val(val) {
+    if (val == true) {
+        return 1;
+    }
+    else {
+        return 0;
     }
 }
