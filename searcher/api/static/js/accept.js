@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
         console.log(filter_form);
 
-        fetch('/bloger/search', {
+        fetch('/trip/accept', {
             method: 'post',
             body: JSON.stringify(filter_form)
         })

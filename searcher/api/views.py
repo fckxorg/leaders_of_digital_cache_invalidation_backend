@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Bloger
+from .models import Bloger, Trip
 
 from datetime import datetime
 import json
@@ -18,7 +18,18 @@ def accept_invite(request):
     # TODO form for accept
     return render(request, 'accept.html')
 
+@csrf_exempt
 def accept_trip(request):
+    data = json.loads(request.body.decode('utf-8'))
+    bloger = Bloger.objects.get(name=data['name'])
+    trip = Trip.objects.get(name=data['trip'])
+
+    bloger.refused = False
+    trip.blogers.add(bloger) 
+    
+    bloger.save()
+    trip.save()
+
     return HttpResponse(200)
 
 @csrf_exempt
