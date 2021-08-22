@@ -30,7 +30,7 @@ python -m dostoevsky download fasttext-social-network-model
 
 Для скрапинга мы используем [Selenium](https://github.com/SeleniumHQ/selenium). Для работы потребуется не только сама библиотека, но и WebDriver. Доступны драйверы на основе различных браузеров, но мы рекомендуем использовать **ChromeDriver**, поскольку решение тестировалось только на нем. Получить информацию об установке **ChromeDriver** на вашу систему [можно здесь](https://sites.google.com/a/chromium.org/chromedriver/downloads).
 
-Кроме того, в файле `config.py` необходимо указать актуальные данные для доступа в Instagram. После этого сервер можно запустить командой:
+Кроме того, в файле `config.py` необходимо указать актуальные данные для доступа в Instagram. Затем, в папке `searcher` нужно создать файл `creds` и в первой его строке записать логин от gmail, а во второй -- пароль. После этого сервер можно запустить командой:
 
 ```
 python manage.py runserver
