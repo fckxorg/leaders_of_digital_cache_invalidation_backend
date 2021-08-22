@@ -11,13 +11,9 @@ from email.message import EmailMessage
 import smtplib
 from string import Template
 
-<<<<<<< HEAD
-# from .analytics import filters as f 
-=======
 from .analytics import filters as f 
 from .analytics import sentiment_analysis as sa
 from .analytics import datetime_analysis as da 
->>>>>>> master
 
 def index(request):
     return render(request, 'index.html')
@@ -73,11 +69,7 @@ def send_posts(request):
 def bloger_search(request):
     data = json.loads(request.body.decode('utf-8'))
     users = []
-<<<<<<< HEAD
-    # f.filter_users(data, users)
-=======
-   # f.filter_users(data, users)
->>>>>>> master
+
     # data will be processed here later on
     #TODO save blogers into database
     # mock response

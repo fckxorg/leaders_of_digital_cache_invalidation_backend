@@ -2,12 +2,84 @@ document.addEventListener('DOMContentLoaded', function () {
     $('.map-block').hide();
     $('.feedback-block').hide();
 
+    $(document.body).on('click', '.bloger-card-feedback', function () {
+        $(this).parent().find('.bloger-card-feedback').css('border-width', '0px');
+        $(this).css('border-width', 'medium');
+        $(this).css('border-color', 'gray');
+
+        let post_req = {
+            name: $(this).find('.bloger-name').text(),
+            trip: $(this).attr('id')
+        }
+
+        console.log(post_req);
+
+        fetch('/trip/post', {
+            method: 'post',
+            body: JSON.stringify(post_req)
+        })
+        .then(response => {
+            if (response.status !== 200) {
+                console.log("Nothing. Status: " + response.status);
+                return;
+            }
+    
+            response.json().then(data => {
+                console.log(data);
+                
+                let posts_cards_html = "";
+
+                data.posts.forEach((post, key, posts) => {
+                    posts_cards_html += `
+                    <div class="post-card cursor-pointer bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow">
+                        <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                        <a href="${post.link}" target="_blank">${post.description}</a>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Дата</div>
+                            <div class="ml-auto text-xs text-gray-500">${post.date}</div>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Лайки</div>
+                            <div class="ml-auto text-xs text-gray-500">${post.likes}</div>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-blue-100 text-blue-500 rounded-md">Просмотры</div>
+                            <div class="ml-auto text-xs text-gray-500">${post.views}</div>
+                        </div>
+                        <div class="flex items-center w-full margin-down-5">
+                            <div class="text-xs py-1 px-2 leading-none dark:bg-gray-900 bg-yellow-100 text-yellow-600 rounded-md">Комментарии</div>
+                                <div class="bar text-xs text-gray-400 ml-auto">
+                                    <div class="green-area" style="width: ${post.comm_positive * 100}%">
+                                        <p class="text-green-600">${percent_text(post.comm_positive * 100)}</p>
+                                    </div>
+                                    <div class="yellow-area" style="width: ${post.comm_neutral * 100}%">
+                                        <p class="text-yellow-600">${percent_text(post.comm_neutral * 100)}</p>
+                                    </div>
+                                    <div class="red-area" style="width: ${post.comm_negative * 100}%">
+                                        <p>${percent_text(post.comm_negative * 100)}</p>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                `;
+                });
+
+                $('.posts-col').html(posts_cards_html);
+            });
+        })
+        .catch(error => {
+            console.log("Fetch error: -S", error);
+        });
+    });
+
     $(document.body).on('click', '.trip-card', function () {
-        $(this).parent().find('.trip-card').css('background-color', 'rgba(255, 255, 255, var(--tw-bg-opacity))');
-        $(this).css('background-color', 'rgba(244, 244, 245, var(--tw-bg-opacity))');
+        $(this).parent().find('.trip-card').css('border-width', '0px');
+        $(this).css('border-width', 'medium');
+        $(this).css('border-color', 'gray');
 
         let bloger_req = {
-            name: 'Мифы и Легенды Самары'
+            name: $(this).find('.trip-name').text()
         }
 
         fetch('/trip/bloger', {
@@ -27,10 +99,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 data.blogers.forEach((bloger, key, blogers) => {
                     blogers_cards_html += `
-                    <div class="trip-card cursor-pointer bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow">
-                        <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white pb-2 mb-2 xl:border-b border-gray-200 border-opacity-75 dark:border-gray-700 w-full">
+                    <div class="bloger-card-feedback cursor-pointer bg-white p-3 flex flex-col rounded-md dark:bg-gray-800 shadow" id="${$(this).find('.trip-name').text()}">
+                        <div class="flex xl:flex-row flex-col items-center font-medium text-gray-900 dark:text-white border-opacity-75 dark:border-gray-700 w-full">
                             <img src="${bloger.photo}" class="w-7 h-7 mr-2 rounded-full" alt="profile" />
-                            <a href="${bloger.link}" target="_blank">${bloger.name}</a>
+                            <a href="${bloger.link}" target="_blank" class="bloger-name">${bloger.name}</a>
                             <div class="network">
                                 <div class="text-gray-400">${bloger.welness}</div>
                                 <i class="fab fa-instagram network-icon"></i>
@@ -307,5 +379,14 @@ function interest_arrow(current, base) {
     }
     else {
         return '<i class="fas fa-arrow-down red-arrow-down"></i>';
+    }
+}
+
+function percent_text(percent) {
+    if (percent >= 25) {
+        return percent + '%'
+    }
+    else {
+        return ''
     }
 }

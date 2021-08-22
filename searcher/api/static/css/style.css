@@ -1453,7 +1453,58 @@ video {
   margin-bottom: 15px; 
 }
 
+.post-card {
+  width: 100%;
+  margin-bottom: 15px; 
+}
+
+.bloger-card-feedback {
+  width: 100%;
+  margin-bottom: 15px; 
+}
+
 .bye {
   text-align: center;
   margin-left: 7rem;
+}
+
+.bar {
+  width: 50%;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #b3b3b3;
+  color: white;
+  text-align: center;
+}
+
+.green-area {
+  width: 50%;
+  height: 100%;
+  background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
+  float: left;
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+  font-size: 0.75rem;
+  padding-top: 0.2rem;
+}
+
+.yellow-area {
+  width: 20%;
+  height: 100%;
+  background-color: rgba(254, 243, 199, var(--tw-bg-opacity));
+  float: left;
+  font-size: 0.75rem;
+  padding-top: 0.2rem;
+}
+
+.red-area {
+  width: 30%;
+  height: 100%;
+  background-color: #ffa5ab;
+  float: left;
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  font-size: 0.75rem;
+  color: #a53860;
+  padding-top: 0.2rem;
 }
