@@ -77,7 +77,24 @@ def bloger_search(request):
     data['avg_views'] = int(data['avg_views']) if data['avg_views'] != '' else None
 
     if bool(data['db']):
-        return HttpResponse(200)
+        blogers = list(Bloger.objects.all())
+        response = {'blogers': []}
+        for bloger in blogers:
+            response['blogers'].append({
+                "name": bloger.name,
+                "email": bloger.email,
+                "phone": bloger.phone,
+                "link": bloger.link,
+                "avg_likes": bloger.avg_likes,
+                "avg_view": bloger.avg_views,
+                "subs": bloger.subs,
+                "network": bloger.network,
+                "photo": bloger.photo,
+                "welness": bloger.wellness
+            })
+             
+        
+        return JsonResponse(response)
     else:
         driver = sc.init_scraper(c.APP_CONFIG['INSTA_LOGIN'], c.APP_CONFIG['INSTA_PASS'])
         result = sc.search_bloggers(data['query'], driver, 5)
